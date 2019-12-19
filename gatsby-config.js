@@ -21,6 +21,6 @@ module.exports = {
         // Url to query from, this has to be static
         url: "https://celticwordpress.co.uk/graphql",
       },
-    }
-	]
-}}
+    },
+  ],
+}
