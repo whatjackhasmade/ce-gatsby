@@ -9,4 +9,18 @@ require(`dotenv`).config({
 
 console.log(`Using wordpress source: ${process.env.GATSBY_WORDPRESS_API}`)
 
-module.exports = {}
+module.exports = {
+  plugins: [
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // Arbitrary name for the remote schema Query type
+        typeName: "WORDPRESS",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "wordpress",
+        // Url to query from, this has to be static
+        url: "https://celticwordpress.co.uk/graphql",
+      },
+    }
+	]
+}}
