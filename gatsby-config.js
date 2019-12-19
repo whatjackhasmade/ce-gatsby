@@ -1,9 +1,12 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
+const activeEnv =
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || `development`
 
-module.exports = {
-  /* Your site config here */
-}
+console.log(`Using environment config: "${activeEnv}"`)
+
+require(`dotenv`).config({
+  path: `.env.${activeEnv}`,
+})
+
+console.log(`Using wordpress source: ${process.env.GATSBY_WORDPRESS_API}`)
+
+module.exports = {}
