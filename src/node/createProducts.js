@@ -25,7 +25,9 @@ module.exports = async ({ actions, graphql }) => {
 
       actions.createPage({
         path: `/${product.slug}`,
-        component: path.resolve(`./src/storybook/templates/product.jsx`),
+        component: path.resolve(
+          `./src/storybook/src/components/templates/product.jsx`
+        ),
         context: {
           ...product,
         },
