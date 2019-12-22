@@ -1,4 +1,5 @@
 const path = require(`path`)
+const fetchMenuHeader = require(`./fetchMenuHeader`)
 
 module.exports = async ({ actions, graphql }) => {
   const GET_PAGES = `
@@ -15,6 +16,8 @@ module.exports = async ({ actions, graphql }) => {
   }
   `
   const { createPage } = actions
+
+  const menuHeader = await fetchMenuHeader({ graphql })
 
   const fetchPages = async variables =>
     await graphql(GET_PAGES, variables).then(({ data }) => {
@@ -35,6 +38,7 @@ module.exports = async ({ actions, graphql }) => {
         ),
         context: {
           ...page,
+          menuHeader,
         },
       })
     })

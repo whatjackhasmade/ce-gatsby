@@ -1,4 +1,5 @@
 const path = require(`path`)
+const fetchMenuHeader = require(`./fetchMenuHeader`)
 
 module.exports = async ({ actions, graphql }) => {
   const GET_POSTS = `
@@ -14,6 +15,8 @@ module.exports = async ({ actions, graphql }) => {
   }
   `
 
+  const menuHeader = await fetchMenuHeader({ graphql })
+
   const fetchPosts = async variables =>
     await graphql(GET_POSTS, variables).then(({ data }) => {
       return data.wordpress.posts.nodes
@@ -24,12 +27,13 @@ module.exports = async ({ actions, graphql }) => {
       console.log(`Creating post: ${post.slug}`)
 
       actions.createPage({
-        path: `/post/${post.slug}`,
+        path: `/${post.slug}`,
         component: path.resolve(
           `./src/storybook/src/components/templates/post.jsx`
         ),
         context: {
           ...post,
+          menuHeader,
         },
       })
     })
