@@ -36,5 +36,14 @@ module.exports = {
         component: require.resolve(`./src/gatsby/gatsbyWrapper.jsx`),
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `assets`,
+        path: `${__dirname}/src/`,
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
   ],
 }
