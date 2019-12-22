@@ -1,3 +1,6 @@
 [submodule "src/storybook"]
 	path = src/storybook
 	url = https://github.com/whatjackhasmade/ce-storybook.git
+[submodule "src/storybook/src/assets/fonts"]
+	path = src/storybook/src/assets/fonts
+	url = git@github.com:whatjackhasmade/ce-fonts.git

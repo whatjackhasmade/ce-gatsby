@@ -22,5 +22,21 @@ module.exports = {
         url: "https://celticwordpress.co.uk/graphql",
       },
     },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /\.svg$/,
+        },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(
+          `./src/storybook/src/components/particles/layout.jsx`
+        ),
+      },
+    },
   ],
 }

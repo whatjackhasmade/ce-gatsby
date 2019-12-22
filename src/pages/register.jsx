@@ -1,11 +1,17 @@
 import React from "react"
 import { Formik } from "formik"
-import { useMutation } from "react-apollo-hooks"
+import { useMutation, useQuery } from "@apollo/react-hooks"
 
 import CREATE_CUSTOMER_ACCOUNT from "../mutations/user/CREATE_CUSTOMER_MUTATION"
 
+import ALL_USERS from "../queries/users/ALL_USERS"
+
 export default () => {
-  const [createAccount, { loading }] = useMutation(CREATE_CUSTOMER_ACCOUNT)
+  // const [createAccount, { data, loading }] = useMutation(
+  //   CREATE_CUSTOMER_ACCOUNT
+  // )
+
+  // const { data, error, loading } = useQuery(ALL_USERS)
 
   return (
     <>
@@ -24,8 +30,8 @@ export default () => {
           return errors
         }}
         onSubmit={(values, { setSubmitting }) => {
-          createAccount({ variables: { ...values } })
-          if (!loading) setSubmitting(false)
+          // createAccount({ variables: { ...values } })
+          setSubmitting(false)
         }}
       >
         {({
