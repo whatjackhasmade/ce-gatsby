@@ -1,27 +1,16 @@
 import React from "react"
 import { Formik } from "formik"
-import { useMutation, useQuery } from "@apollo/react-hooks"
 
-import StyledRegister from "./register.styles"
+import StyledAccount from "./account.styles"
 
 import Link from "../../storybook/src/components/atoms/link/link"
 
 import Layout from "../../storybook/src/components/particles/layout"
 
-import CREATE_CUSTOMER_ACCOUNT from "../../mutations/user/CREATE_CUSTOMER_MUTATION"
-
-import ALL_USERS from "../../queries/users/ALL_USERS"
-
 export default props => {
-  // const [createAccount, { data, loading }] = useMutation(
-  //   CREATE_CUSTOMER_ACCOUNT
-  // )
-
-  // const { data, error, loading } = useQuery(ALL_USERS)
-
   return (
-    <Layout {...props} cart={false} header={false} footer={false}>
-      <StyledRegister>
+    <Layout {...props} cart={false}>
+      <StyledAccount>
         <div className="register__wrapper">
           <h1 className="h3">Register an account</h1>
           <Link href="/">Return to homepage</Link>
@@ -108,7 +97,7 @@ export default props => {
             )}
           </Formik>
         </div>
-      </StyledRegister>
+      </StyledAccount>
     </Layout>
   )
 }
