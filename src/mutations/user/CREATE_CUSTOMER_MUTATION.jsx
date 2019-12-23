@@ -2,7 +2,7 @@ import gql from "graphql-tag"
 
 export const CREATE_CUSTOMER_ACCOUNT = gql`
   mutation CREATE_CUSTOMER_ACCOUNT(
-    $clientMutationId: ID!
+    $clientMutationId: String!
     $email: String!
     $firstName: String
     $lastName: String
