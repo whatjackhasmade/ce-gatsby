@@ -37,7 +37,7 @@ const CheckoutPage = props => {
             <h1 className="h3">Checkout</h1>
             <p>We couldn't find any items in your cart</p>
             <p>Try out these products!</p>
-            <Archive items={gatsbyContext.allProducts} />
+            {gatsbyContext && <Archive items={gatsbyContext.allProducts} />}
           </div>
         </div>
       </StyledCheckout>

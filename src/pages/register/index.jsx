@@ -20,12 +20,6 @@ export default props => {
   {
     console.log({ data })
   }
-  {
-    console.log({ error })
-  }
-  {
-    console.log({ loading })
-  }
 
   return (
     <Layout {...props} cart={false} header={false} footer={false}>
@@ -73,7 +67,11 @@ export default props => {
               isSubmitting,
               /* and other goodies */
             }) => (
-              <form disabled={isSubmitting || loading} onSubmit={handleSubmit}>
+              <form
+                aria-busy={isSubmitting || loading}
+                disabled={isSubmitting || loading}
+                onSubmit={handleSubmit}
+              >
                 <label htmlFor="email">Email Address</label>
                 <input
                   type="email"
