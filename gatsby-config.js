@@ -31,12 +31,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-layout`,
-      options: {
-        component: require.resolve(`./src/gatsby/gatsbyWrapper.jsx`),
-      },
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `assets`,
