@@ -10,14 +10,16 @@ import Layout from "../../storybook/src/components/particles/layout"
 
 import CREATE_CUSTOMER_ACCOUNT from "../../mutations/user/CREATE_CUSTOMER_MUTATION"
 
-import ALL_USERS from "../../queries/users/ALL_USERS"
+import ALL_USERS_QUERY from "../../queries/users/ALL_USERS_QUERY"
 
 export default props => {
   // const [createAccount, { data, loading }] = useMutation(
   //   CREATE_CUSTOMER_ACCOUNT
   // )
 
-  // const { data, error, loading } = useQuery(ALL_USERS)
+  const { data, error, loading } = useQuery(ALL_USERS_QUERY)
+
+  console.log(data)
 
   return (
     <Layout {...props} cart={false} header={false} footer={false}>

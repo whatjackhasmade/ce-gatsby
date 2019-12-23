@@ -10,12 +10,31 @@ module.exports = async ({ actions, graphql }) => {
 	      nodes {
           id
           productId
+          averageRating
+          catalogVisibility
+          date
+          dateOnSaleFrom
+          dateOnSaleTo
+          description(format: RENDERED)
+          featured
           image {
             mediaItemUrl
           }
-	        name
+          link
+          menuOrder
+          modified
+          name
+          onSale
           purchasable
+          purchaseNote
+          reviewCount
+          reviewsAllowed
+          shortDescription(format: RENDERED)
+          sku
           slug
+          status
+          totalSales
+          type
 	      }
 	    }
 	  }
