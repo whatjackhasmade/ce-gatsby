@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
+import { generateID } from "../../storybook/src/components/helpers";
 
 import StyledRegister from "./register.styles";
 
@@ -52,7 +53,10 @@ export default props => {
 						validateOnChange={false}
 						onSubmit={(values, { setSubmitting }) => {
 							createAccount({
-								variables: { clientMutationId: "test", ...values }
+								variables: {
+									clientMutationId: generateID("register"),
+									...values
+								}
 							});
 							setSubmitting(false);
 						}}

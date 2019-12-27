@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import { useMutation } from "@apollo/react-hooks";
+import { generateID } from "../../storybook/src/components/helpers";
 
 import StyledLogin from "./login.styles";
 
@@ -20,7 +21,7 @@ export default props => {
 
 	const processLogin = async values => {
 		const login = await loginUser({
-			variables: { clientMutationId: "test", ...values }
+			variables: { clientMutationId: generateID("login"), ...values }
 		});
 
 		if (
