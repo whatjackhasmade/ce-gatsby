@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
-export const CREATE_CUSTOMER_ACCOUNT = gql`
-	mutation CREATE_CUSTOMER_ACCOUNT(
+export const CREATE_CUSTOMER_MUTATION = gql`
+	mutation CREATE_CUSTOMER_MUTATION(
 		$clientMutationId: String!
 		$email: String!
 		$firstName: String
@@ -22,9 +22,10 @@ export const CREATE_CUSTOMER_ACCOUNT = gql`
 			clientMutationId
 			user {
 				email
+				jwtAuthToken
 			}
 		}
 	}
 `;
 
-export default CREATE_CUSTOMER_ACCOUNT;
+export default CREATE_CUSTOMER_MUTATION;
