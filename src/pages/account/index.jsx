@@ -1,4 +1,5 @@
 import React from "react";
+import { navigate } from "gatsby";
 import { useQuery } from "@apollo/react-hooks";
 
 import StyledAccount from "./account.styles";
@@ -18,19 +19,7 @@ import Accordion from "../../storybook/src/components/organisms/accordion/accord
 
 export default props => {
 	const ourAuthToken = localStorage.getItem("authToken");
-
-	if (!ourAuthToken) {
-		return (
-			<Layout {...props} cart={false}>
-				<StyledAccount>
-					<div className="account__wrapper">
-						<h1 className="h3">Login to view your account</h1>
-						<Link href="/login">Login</Link>
-					</div>
-				</StyledAccount>
-			</Layout>
-		);
-	}
+	if (!ourAuthToken) navigate("/login/");
 
 	return (
 		<Layout {...props} cart={false}>

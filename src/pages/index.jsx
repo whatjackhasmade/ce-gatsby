@@ -9,8 +9,8 @@ import Carousel from "../storybook/src/components/organisms/carousel/carousel";
 
 const { banner, carousel } = staticData;
 
-const Homepage = () => (
-	<Layout>
+const Homepage = props => (
+	<Layout {...props}>
 		<Banner {...banner} />
 		<Carousel {...carousel} />
 	</Layout>

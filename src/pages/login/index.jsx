@@ -1,4 +1,5 @@
 import React from "react";
+import { navigate } from "gatsby";
 import { Formik } from "formik";
 import { useMutation } from "@apollo/react-hooks";
 import { generateID } from "../../storybook/src/components/helpers";
@@ -18,6 +19,8 @@ export default props => {
 	const [loginUser, { data, error, loading }] = useMutation(
 		LOGIN_USER_MUTATION
 	);
+
+	if (ourAuthToken) navigate("/account/");
 
 	// Debugging changes 🕵🏻‍♂️
 	{
