@@ -10,6 +10,6 @@ const fluidImageFields = `
 			}
 		}
 	}
-`
+`;
 
-module.exports = fluidImageFields
+module.exports = fluidImageFields;

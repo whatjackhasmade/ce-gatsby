@@ -1,4 +1,4 @@
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby";
 
 export const useAllMenus = () => {
   const { wordpress } = useStaticQuery(
@@ -25,8 +25,8 @@ export const useAllMenus = () => {
         }
       }
     `
-  )
-  return wordpress.menus.edges
-}
+  );
+  return wordpress.menus.edges;
+};
 
-export default useAllMenus
+export default useAllMenus;

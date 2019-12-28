@@ -1,12 +1,12 @@
-import React from "react"
+import React from "react";
 
-import StyledAccount from "./account.styles"
+import StyledAccount from "./account.styles";
 
-import Layout from "../../storybook/src/components/particles/layout"
+import Layout from "../../storybook/src/components/particles/layout";
 
-import Link from "../../storybook/src/components/atoms/link/link"
+import Link from "../../storybook/src/components/atoms/link/link";
 
-import Logout from "../../storybook/src/components/molecules/logout/logout"
+import Logout from "../../storybook/src/components/molecules/logout/logout";
 
 export default props => {
   return (
@@ -19,5 +19,5 @@ export default props => {
         </div>
       </StyledAccount>
     </Layout>
-  )
-}
+  );
+};

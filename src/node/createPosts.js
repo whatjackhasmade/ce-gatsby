@@ -1,4 +1,4 @@
-const path = require(`path`)
+const path = require(`path`);
 
 module.exports = async ({ actions, graphql }) => {
   const GET_POSTS = `
@@ -12,16 +12,16 @@ module.exports = async ({ actions, graphql }) => {
       }
     }
   }
-  `
+  `;
 
   const fetchPosts = async variables =>
     await graphql(GET_POSTS, variables).then(({ data }) => {
-      return data.wordpress.posts.nodes
-    })
+      return data.wordpress.posts.nodes;
+    });
 
   await fetchPosts({ first: 500 }).then(allPosts => {
     allPosts.map(post => {
-      console.log(`Creating post: ${post.slug}`)
+      console.log(`Creating post: ${post.slug}`);
 
       actions.createPage({
         path: `/${post.slug}`,
@@ -29,9 +29,9 @@ module.exports = async ({ actions, graphql }) => {
           `./src/storybook/src/components/templates/post.jsx`
         ),
         context: {
-          ...post,
-        },
-      })
-    })
-  })
-}
+          ...post
+        }
+      });
+    });
+  });
+};

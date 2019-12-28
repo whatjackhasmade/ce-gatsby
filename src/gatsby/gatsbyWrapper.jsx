@@ -1,26 +1,26 @@
-import React from "react"
+import React from "react";
 
-import useAllMenus from "./hooks/useAllMenus"
-import useAllProducts from "./hooks/useAllProducts"
-import useHeaderMenu from "./hooks/useHeaderMenu"
+import useAllMenus from "./hooks/useAllMenus";
+import useAllProducts from "./hooks/useAllProducts";
+import useHeaderMenu from "./hooks/useHeaderMenu";
 
 const PropProducer = props => {
-  let allMenus = useAllMenus()
-  allMenus = allMenus.map(menu => menu.node)
-  const menuHeader = useHeaderMenu()
-  let allProducts = useAllProducts()
-  allProducts = allProducts.map(prod => prod.node)
+  let allMenus = useAllMenus();
+  allMenus = allMenus.map(menu => menu.node);
+  const menuHeader = useHeaderMenu();
+  let allProducts = useAllProducts();
+  allProducts = allProducts.map(prod => prod.node);
 
-  let footerMenus = allMenus.filter(menu => menu.slug !== "header-menu")
+  let footerMenus = allMenus.filter(menu => menu.slug !== "header-menu");
   footerMenus = footerMenus.map(menu => {
     return {
       items: menu.menuItems.edges.map(item => item.node),
-      title: menu.name,
-    }
-  })
+      title: menu.name
+    };
+  });
 
-  let headerMenu
-  headerMenu = menuHeader.map(node => node.node)
+  let headerMenu;
+  headerMenu = menuHeader.map(node => node.node);
   headerMenu = [
     { items: headerMenu },
     {
@@ -30,36 +30,36 @@ const PropProducer = props => {
           icon: null,
           label: "Insights",
           target: null,
-          url: "#",
+          url: "#"
         },
         {
           icon: null,
           label: "Account",
           target: null,
-          url: "account",
+          url: "account"
         },
         {
           icon: "user",
           label: "User",
           target: null,
-          url: "orders",
+          url: "orders"
         },
         {
           icon: "bag",
           label: "Cart",
           target: null,
-          url: "checkout",
-        },
-      ],
-    },
-  ]
+          url: "checkout"
+        }
+      ]
+    }
+  ];
 
   const newProps = {
     ...props,
-    gatsbyContext: { allProducts, headerMenu, footerMenus },
-  }
+    gatsbyContext: { allProducts, headerMenu, footerMenus }
+  };
 
-  return <>{React.cloneElement(props.children, newProps)}</>
-}
+  return <>{React.cloneElement(props.children, newProps)}</>;
+};
 
-export default PropProducer
+export default PropProducer;

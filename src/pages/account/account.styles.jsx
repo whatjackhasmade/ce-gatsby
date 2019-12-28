@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const StyledAccount = styled.section`
   min-height: 100vh;
@@ -17,6 +17,6 @@ export const StyledAccount = styled.section`
 
     background-color: ${props => props.theme.white};
   }
-`
+`;
 
-export default StyledAccount
+export default StyledAccount;

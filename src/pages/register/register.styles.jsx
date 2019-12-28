@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const StyledRegister = styled.section`
   min-height: 100vh;
@@ -17,6 +17,6 @@ export const StyledRegister = styled.section`
 
     background-color: ${props => props.theme.white};
   }
-`
+`;
 
-export default StyledRegister
+export default StyledRegister;

@@ -1,32 +1,32 @@
-import React, { useContext } from "react"
-import { calculateTotalCost } from "../../storybook/src/components/helpers.js"
+import React, { useContext } from "react";
+import { calculateTotalCost } from "../../storybook/src/components/helpers.js";
 
-import StyledCheckout from "./checkout.styles"
+import StyledCheckout from "./checkout.styles";
 
-import Button from "../../storybook/src/components/atoms/button/button"
-import Link from "../../storybook/src/components/atoms/link/link"
+import Button from "../../storybook/src/components/atoms/button/button";
+import Link from "../../storybook/src/components/atoms/link/link";
 
-import CartItem from "../../storybook/src/components/molecules/cart-item/cartItem"
+import CartItem from "../../storybook/src/components/molecules/cart-item/cartItem";
 
-import Archive from "../../storybook/src/components/organisms/archive/archive"
+import Archive from "../../storybook/src/components/organisms/archive/archive";
 
-import Layout from "../../storybook/src/components/particles/layout"
-import ApplicationContext from "../../storybook/src/components/particles/context/applicationContext"
+import Layout from "../../storybook/src/components/particles/layout";
+import ApplicationContext from "../../storybook/src/components/particles/context/applicationContext";
 
 export default props => {
   return (
     <Layout {...props} cart={false}>
       <CheckoutPage {...props} />
     </Layout>
-  )
-}
+  );
+};
 
 const CheckoutPage = props => {
-  const { gatsbyContext } = props
-  const { state } = useContext(ApplicationContext)
+  const { gatsbyContext } = props;
+  const { state } = useContext(ApplicationContext);
   // Desctructure the cart value from our context (Initially [])
-  const { cart } = state
-  const { items } = props
+  const { cart } = state;
+  const { items } = props;
 
   if (!cart || !cart.length) {
     return (
@@ -41,10 +41,10 @@ const CheckoutPage = props => {
           </div>
         </div>
       </StyledCheckout>
-    )
+    );
   }
 
-  const total = calculateTotalCost(cart)
+  const total = calculateTotalCost(cart);
 
   return (
     <StyledCheckout>
@@ -56,8 +56,8 @@ const CheckoutPage = props => {
             className="checkout__summary__checkout"
             disabled={(cart || items) && !cart.length && !items.length}
             onClick={e => {
-              e.preventDefault()
-              alert("Time to pay")
+              e.preventDefault();
+              alert("Time to pay");
             }}
           >
             Continue to payment
@@ -91,8 +91,8 @@ const CheckoutPage = props => {
               className="checkout__summary__checkout"
               disabled={(cart || items) && !cart.length && !items.length}
               onClick={e => {
-                e.preventDefault()
-                alert("Time to pay")
+                e.preventDefault();
+                alert("Time to pay");
               }}
               variant="tertiary"
             >
@@ -102,5 +102,5 @@ const CheckoutPage = props => {
         </aside>
       </div>
     </StyledCheckout>
-  )
-}
+  );
+};

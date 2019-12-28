@@ -1,4 +1,4 @@
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby";
 
 export const useAllProducts = () => {
   const { wordpress } = useStaticQuery(
@@ -18,8 +18,8 @@ export const useAllProducts = () => {
         }
       }
     `
-  )
-  return wordpress.products.edges
-}
+  );
+  return wordpress.products.edges;
+};
 
-export default useAllProducts
+export default useAllProducts;

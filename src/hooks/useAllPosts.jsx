@@ -1,4 +1,4 @@
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby";
 
 export const useAllPosts = () => {
   const { wordpress } = useStaticQuery(
@@ -14,8 +14,8 @@ export const useAllPosts = () => {
         }
       }
     `
-  )
-  return wordpress.posts.nodes
-}
+  );
+  return wordpress.posts.nodes;
+};
 
-export default useAllPosts
+export default useAllPosts;

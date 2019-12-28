@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const StyledCheckout = styled.section`
   padding: 32px 0;
@@ -18,6 +18,6 @@ export const StyledCheckout = styled.section`
   .checkout__wrapper {
     display: flex;
   }
-`
+`;
 
-export default StyledCheckout
+export default StyledCheckout;
