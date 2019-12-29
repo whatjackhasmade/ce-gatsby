@@ -1,4 +1,5 @@
 import React from "react";
+import { navigate } from "gatsby";
 import { Formik } from "formik";
 import { useMutation } from "@apollo/react-hooks";
 import { generateID } from "../../storybook/src/components/helpers";
@@ -32,11 +33,15 @@ export default props => {
 	// TODO: Replace with optional chaining - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
 	if (
 		data &&
-		data.registerUser &&
-		data.registerUser.user &&
-		data.registerUser.user.jwtAuthToken
+		data.registerCustomer &&
+		data.registerCustomer.customer &&
+		data.registerCustomer.customer.jwtAuthToken
 	) {
-		localStorage.setItem("authToken", data.registerUser.user.jwtAuthToken);
+		localStorage.setItem(
+			"authToken",
+			data.registerCustomer.customer.jwtAuthToken
+		);
+		navigate("/account/");
 	}
 
 	return (

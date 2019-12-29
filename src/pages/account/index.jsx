@@ -1,6 +1,8 @@
 import React from "react";
+import { Formik } from "formik";
 import { navigate } from "gatsby";
-import { useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { generateID } from "../../storybook/src/components/helpers";
 
 import StyledAccount from "./account.styles";
 
@@ -8,6 +10,8 @@ import Debugger from "../../storybook/src/components/particles/debugger";
 import Layout from "../../storybook/src/components/particles/layout";
 
 import CUSTOMER_DETAILS_QUERY from "../../storybook/src/components/particles/queries/users/CUSTOMER_DETAILS_QUERY";
+
+import UPDATE_SHIPPING_MUTATION from "../../storybook/src/components/particles/mutations/user/UPDATE_SHIPPING_MUTATION";
 
 import Link from "../../storybook/src/components/atoms/link/link";
 
@@ -28,7 +32,7 @@ export default props => {
 						<h1 className="h5">Account details</h1>
 						<div className="account__header__actions">
 							<Link href="/">Return to homepage</Link>
-							<Logout title={null} />
+							<Logout title="" />
 						</div>
 					</header>
 					<CustomerDetails {...props} />
@@ -54,25 +58,7 @@ const CustomerDetails = () => {
 			</div>
 			<div className="account__shipping">
 				<Accordion title="Shipping details">
-					<form>
-						<label htmlFor="address1">First name</label>
-						<input id="firstName" name="firstName" type="text"></input>
-						<label htmlFor="lastName">Last name</label>
-						<input id="lastName" name="lastName" type="text"></input>
-						<label htmlFor="email">Email Address</label>
-						<input id="email" name="email" type="email"></input>
-						<label htmlFor="address1">Address Line 1</label>
-						<input id="address1" name="address1" type="text"></input>
-						<label htmlFor="address2">Address Line 2</label>
-						<input id="address2" name="address2" type="text"></input>
-						<label htmlFor="city">City</label>
-						<input id="city" name="city" type="text"></input>
-						<label htmlFor="company">Company</label>
-						<input id="company" name="company" type="text"></input>
-						<label htmlFor="country">Country</label>
-						<input id="country" name="country" type="country"></input>
-						<button type="submit">Update Shipping Details</button>
-					</form>
+					<UpdateShippingForm initial={customer.shipping} />
 				</Accordion>
 			</div>
 
@@ -97,3 +83,178 @@ const CustomerDetails = () => {
 		</>
 	);
 };
+
+const UpdateShippingForm = ({ initial }) => {
+	const [updateShipping, { data, error, loading }] = useMutation(
+		UPDATE_SHIPPING_MUTATION
+	);
+
+	const processUpdate = async values => {
+		const variables = {
+			clientMutationId: generateID("update-shipping-details"),
+			...values
+		};
+		console.log(variables);
+
+		const res = await updateShipping({
+			variables
+		});
+	};
+
+	return (
+		<Formik
+			initialValues={{
+				firstName: "",
+				lastName: "",
+				email: "",
+				address1: "",
+				address2: "",
+				city: "",
+				company: "",
+				country: ""
+			}}
+			validate={values => {
+				const errors = {};
+				if (!values.firstName) errors.firstName = "required";
+				if (!values.lastName) errors.lastName = "required";
+				if (!values.email) errors.email = "required";
+				if (!values.address1) errors.address1 = "required";
+				if (!values.address2) errors.address2 = "required";
+				if (!values.city) errors.city = "required";
+				if (!values.company) errors.company = "required";
+				if (!values.country) errors.country = "required";
+				return errors;
+			}}
+			validateOnBlur={false}
+			validateOnChange={false}
+			onSubmit={async (values, { setSubmitting }) => {
+				await processUpdate(values);
+				setSubmitting(false);
+			}}
+		>
+			{({
+				values,
+				errors,
+				touched,
+				handleChange,
+				handleBlur,
+				handleSubmit,
+				isSubmitting
+				/* and other goodies */
+			}) => (
+				<form
+					aria-busy={isSubmitting || loading}
+					disabled={isSubmitting || loading}
+					onSubmit={handleSubmit}
+				>
+					<FormInput
+						errors={errors}
+						handleBlur={handleBlur}
+						handleChange={handleChange}
+						name="firstName"
+						touched={touched}
+						type="text"
+						values={values}
+					/>
+					<FormInput
+						errors={errors}
+						handleBlur={handleBlur}
+						handleChange={handleChange}
+						name="lastName"
+						touched={touched}
+						type="text"
+						values={values}
+					/>
+					<FormInput
+						errors={errors}
+						handleBlur={handleBlur}
+						handleChange={handleChange}
+						name="email"
+						touched={touched}
+						type="email"
+						values={values}
+					/>
+					<FormInput
+						errors={errors}
+						handleBlur={handleBlur}
+						handleChange={handleChange}
+						name="address1"
+						touched={touched}
+						type="text"
+						values={values}
+					/>
+					<FormInput
+						errors={errors}
+						handleBlur={handleBlur}
+						handleChange={handleChange}
+						name="address2"
+						touched={touched}
+						type="text"
+						values={values}
+					/>
+					<FormInput
+						errors={errors}
+						handleBlur={handleBlur}
+						handleChange={handleChange}
+						name="city"
+						touched={touched}
+						type="text"
+						values={values}
+					/>
+					<FormInput
+						errors={errors}
+						handleBlur={handleBlur}
+						handleChange={handleChange}
+						name="company"
+						touched={touched}
+						type="text"
+						values={values}
+					/>
+					<FormInput
+						errors={errors}
+						handleBlur={handleBlur}
+						handleChange={handleChange}
+						name="country"
+						touched={touched}
+						type="text"
+						values={values}
+					/>
+					<button type="submit" disabled={isSubmitting || loading}>
+						Updat
+						{loading ? `ing` : `e`} Shipping Details
+					</button>
+				</form>
+			)}
+		</Formik>
+	);
+};
+
+const FormInput = ({
+	errors,
+	handleBlur,
+	handleChange,
+	label,
+	name,
+	touched,
+	type,
+	values
+}) => (
+	<>
+		<label htmlFor={name}>{label ? label : name}</label>
+		<input
+			type="text"
+			id={name}
+			name={name}
+			onChange={handleChange}
+			onBlur={handleBlur}
+			value={values[name]}
+		/>
+		{errors[name] && touched[name] && (
+			<ErrorMessage
+				isDeveloperConcern={false}
+				message={errors[name]}
+				title={`${name} field is `}
+			/>
+		)}
+	</>
+);

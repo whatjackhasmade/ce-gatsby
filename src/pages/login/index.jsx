@@ -10,6 +10,7 @@ import LOGIN_USER_MUTATION from "../../storybook/src/components/particles/mutati
 
 import Layout from "../../storybook/src/components/particles/layout";
 
+import Button from "../../storybook/src/components/atoms/button/button";
 import Link from "../../storybook/src/components/atoms/link/link";
 
 import ErrorMessage from "../../storybook/src/components/molecules/error-message/errorMessage";
@@ -142,6 +143,9 @@ export default props => {
 										<button type="submit" disabled={isSubmitting || loading}>
 											Log{loading ? `ging in` : `in`} to Account
 										</button>
+										<Button href="/register" variant="tertiary">
+											Register account
+										</Button>
 									</form>
 								)}
 							</Formik>
