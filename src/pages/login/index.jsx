@@ -16,11 +16,16 @@ import ErrorMessage from "../../storybook/src/components/molecules/error-message
 
 export default props => {
 	const ourAuthToken = localStorage.getItem("authToken");
+	const ourRefreshToken = localStorage.getItem("refreshToken");
+
 	const [loginUser, { data, error, loading }] = useMutation(
 		LOGIN_USER_MUTATION
 	);
 
-	if (ourAuthToken) navigate("/account/");
+	if (ourAuthToken && ourRefreshToken) navigate("/account/");
+
+	if (!ourAuthToken) localStorage.removeItem("refreshToken");
+	if (!ourRefreshToken) localStorage.removeItem("authToken");
 
 	// Debugging changes 🕵🏻‍♂️
 	{
@@ -45,24 +50,31 @@ export default props => {
 			!login ||
 			!login.data ||
 			!login.data.login ||
-			!login.data.login.authToken
-		)
+			!login.data.login.authToken ||
+			!login.data.login.refreshToken
+		) {
+			console.error(
+				"Unable to retrieve authToken or refreshToken from login mutation"
+			);
 			return false;
+		}
 
 		localStorage.setItem("authToken", login.data.login.authToken);
+		localStorage.setItem("refreshToken", login.data.login.refreshToken);
+		navigate("/account/");
 	};
 
 	return (
 		<Layout {...props} cart={false} header={false} footer={false}>
 			<StyledLogin>
 				<div className="login__wrapper">
-					{ourAuthToken && (
+					{ourAuthToken && ourRefreshToken && (
 						<>
 							<h1 className="h3">You're already logged in</h1>
 							<Link href="/">Return to homepage</Link>
 						</>
 					)}
-					{!ourAuthToken && (
+					{(!ourAuthToken || !ourRefreshToken) && (
 						<>
 							<h1 className="h3">Login to your account</h1>
 							<Link href="/">Return to homepage</Link>
