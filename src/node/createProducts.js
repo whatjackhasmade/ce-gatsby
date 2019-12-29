@@ -3,7 +3,7 @@ const path = require(`path`);
 const fluidImage = require(`./fragments/gatsby/fluid`);
 
 module.exports = async ({ actions, graphql }) => {
-  const GET_PRODUCTS = `
+	const GET_PRODUCTS = `
   query ALL_PRODUCTS($first:Int) {
 	  wordpress {
 	    products( first: $first ) {
@@ -35,31 +35,34 @@ module.exports = async ({ actions, graphql }) => {
           status
           totalSales
           type
+          ... on WORDPRESS_SimpleProduct {
+            price
+          }
 	      }
 	    }
 	  }
 	}
   `;
 
-  const fetchProducts = async variables =>
-    await graphql(GET_PRODUCTS, variables).then(({ data }) => {
-      return data.wordpress.products.nodes;
-    });
+	const fetchProducts = async variables =>
+		await graphql(GET_PRODUCTS, variables).then(({ data }) => {
+			return data.wordpress.products.nodes;
+		});
 
-  await fetchProducts({ first: 500 }).then(allProducts => {
-    allProducts.map(product => {
-      if (!product.purchasable) return null;
-      console.log(`Creating product: ${product.slug}`);
+	await fetchProducts({ first: 500 }).then(allProducts => {
+		allProducts.map(product => {
+			if (!product.purchasable) return null;
+			console.log(`Creating product: ${product.slug}`);
 
-      actions.createPage({
-        path: `/${product.slug}`,
-        component: path.resolve(
-          `./src/storybook/src/components/templates/product/product.jsx`
-        ),
-        context: {
-          ...product
-        }
-      });
-    });
-  });
+			actions.createPage({
+				path: `/${product.slug}`,
+				component: path.resolve(
+					`./src/storybook/src/components/templates/product/product.jsx`
+				),
+				context: {
+					...product
+				}
+			});
+		});
+	});
 };

@@ -16,7 +16,11 @@ export const useAllProducts = () => {
 								}
 								purchasable
 								title: name
+								shortDescription
 								slug
+								... on WORDPRESS_SimpleProduct {
+									price
+								}
 							}
 						}
 					}
