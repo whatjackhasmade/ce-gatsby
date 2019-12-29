@@ -8,7 +8,6 @@ import Debugger from "../../storybook/src/components/particles/debugger";
 import Layout from "../../storybook/src/components/particles/layout";
 
 import CUSTOMER_DETAILS_QUERY from "../../storybook/src/components/particles/queries/users/CUSTOMER_DETAILS_QUERY";
-import ALL_USERS_QUERY from "../../storybook/src/components/particles/queries/users/ALL_USERS_QUERY";
 
 import Link from "../../storybook/src/components/atoms/link/link";
 
@@ -25,10 +24,14 @@ export default props => {
 		<Layout {...props} cart={false}>
 			<StyledAccount>
 				<div className="account__wrapper">
-					<h1 className="h3">Account details</h1>
-					<Link href="/">Return to homepage</Link>
+					<header className="account__header">
+						<h1 className="h5">Account details</h1>
+						<div className="account__header__actions">
+							<Link href="/">Return to homepage</Link>
+							<Logout title={null} />
+						</div>
+					</header>
 					<CustomerDetails {...props} />
-					<Logout title={null} />
 				</div>
 			</StyledAccount>
 		</Layout>
@@ -45,8 +48,10 @@ const CustomerDetails = () => {
 
 	return (
 		<>
-			<h2 className="account__username">{customer.username}</h2>
-			<h3 className="account__email">{customer.email}</h3>
+			<div className="account__ids">
+				<h2 className="account__username h3">{customer.username}</h2>
+				<h3 className="account__email">{customer.email}</h3>
+			</div>
 			<div className="account__shipping">
 				<Accordion title="Shipping details">
 					<form>
@@ -72,23 +77,23 @@ const CustomerDetails = () => {
 			</div>
 
 			{customer.orders > 0 ? (
-				<>
+				<Accordion title={`(${customer.orderCount}) Your orders`}>
 					{customer.orders.map(order => (
 						<p>Order item</p>
 					))}
-				</>
+				</Accordion>
 			) : (
-				<p>No orders yet</p>
+				<Accordion title="No orders">
+					<Link href="/shop">Browse our products</Link>
+				</Accordion>
 			)}
 			{customer.refunds > 0 && (
-				<>
+				<Accordion title="Refunds">
 					{customer.refunds.map(refund => (
 						<p>Refund item</p>
 					))}
-				</>
+				</Accordion>
 			)}
-			<Debugger data={data} />
-			{console.log(data)}
 		</>
 	);
 };
