@@ -50,6 +50,8 @@ const CustomerDetails = () => {
 
 	const { customer } = data;
 
+	console.log(customer);
+
 	return (
 		<>
 			<div className="account__ids">
@@ -94,11 +96,12 @@ const UpdateShippingForm = ({ initial }) => {
 			clientMutationId: generateID("update-shipping-details"),
 			...values
 		};
-		console.log(variables);
 
 		const res = await updateShipping({
 			variables
 		});
+
+		console.log(res);
 	};
 
 	return (
