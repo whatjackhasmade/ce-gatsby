@@ -20,11 +20,9 @@ export default props => {
 	);
 
 	// Debugging changes 🕵🏻‍♂️
-	{
-		console.log({ data });
-		console.log({ error });
-		console.log({ loading });
-	}
+	console.log({ data });
+	console.log({ error });
+	console.log({ loading });
 
 	// TODO: Replace with optional chaining - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
 	if (
@@ -105,7 +103,6 @@ export default props => {
 									type="email"
 									id="email"
 									name="email"
-									autoFocus={true}
 									onChange={handleChange}
 									onBlur={handleBlur}
 									value={values.email}

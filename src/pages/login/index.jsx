@@ -29,11 +29,9 @@ export default props => {
 	if (!ourRefreshToken) localStorage.removeItem("authToken");
 
 	// Debugging changes 🕵🏻‍♂️
-	{
-		console.log({ data });
-		console.log({ error });
-		console.log({ loading });
-	}
+	console.log({ data });
+	console.log({ error });
+	console.log({ loading });
 
 	const processLogin = async values => {
 		const login = await loginUser({
@@ -116,7 +114,6 @@ export default props => {
 											type="text"
 											id="username"
 											name="username"
-											autoFocus={true}
 											onChange={handleChange}
 											onBlur={handleBlur}
 											value={values.username}
