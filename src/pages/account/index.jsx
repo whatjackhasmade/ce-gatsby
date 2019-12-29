@@ -6,7 +6,6 @@ import { generateID } from "../../storybook/src/components/helpers";
 
 import StyledAccount from "./account.styles";
 
-import Debugger from "../../storybook/src/components/particles/debugger";
 import Layout from "../../storybook/src/components/particles/layout";
 
 import CUSTOMER_DETAILS_QUERY from "../../storybook/src/components/particles/queries/users/CUSTOMER_DETAILS_QUERY";
@@ -91,6 +90,8 @@ const UpdateShippingForm = ({ initial }) => {
 		UPDATE_SHIPPING_MUTATION
 	);
 
+	console.log(data);
+
 	const processUpdate = async values => {
 		const variables = {
 			clientMutationId: generateID("update-shipping-details"),
@@ -105,130 +106,133 @@ const UpdateShippingForm = ({ initial }) => {
 	};
 
 	return (
-		<Formik
-			initialValues={{
-				firstName: "",
-				lastName: "",
-				email: "",
-				address1: "",
-				address2: "",
-				city: "",
-				company: "",
-				country: ""
-			}}
-			validate={values => {
-				const errors = {};
-				if (!values.firstName) errors.firstName = "required";
-				if (!values.lastName) errors.lastName = "required";
-				if (!values.email) errors.email = "required";
-				if (!values.address1) errors.address1 = "required";
-				if (!values.address2) errors.address2 = "required";
-				if (!values.city) errors.city = "required";
-				if (!values.company) errors.company = "required";
-				if (!values.country) errors.country = "required";
-				return errors;
-			}}
-			validateOnBlur={false}
-			validateOnChange={false}
-			onSubmit={async (values, { setSubmitting }) => {
-				await processUpdate(values);
-				setSubmitting(false);
-			}}
-		>
-			{({
-				values,
-				errors,
-				touched,
-				handleChange,
-				handleBlur,
-				handleSubmit,
-				isSubmitting
-				/* and other goodies */
-			}) => (
-				<form
-					aria-busy={isSubmitting || loading}
-					disabled={isSubmitting || loading}
-					onSubmit={handleSubmit}
-				>
-					<FormInput
-						errors={errors}
-						handleBlur={handleBlur}
-						handleChange={handleChange}
-						name="firstName"
-						touched={touched}
-						type="text"
-						values={values}
-					/>
-					<FormInput
-						errors={errors}
-						handleBlur={handleBlur}
-						handleChange={handleChange}
-						name="lastName"
-						touched={touched}
-						type="text"
-						values={values}
-					/>
-					<FormInput
-						errors={errors}
-						handleBlur={handleBlur}
-						handleChange={handleChange}
-						name="email"
-						touched={touched}
-						type="email"
-						values={values}
-					/>
-					<FormInput
-						errors={errors}
-						handleBlur={handleBlur}
-						handleChange={handleChange}
-						name="address1"
-						touched={touched}
-						type="text"
-						values={values}
-					/>
-					<FormInput
-						errors={errors}
-						handleBlur={handleBlur}
-						handleChange={handleChange}
-						name="address2"
-						touched={touched}
-						type="text"
-						values={values}
-					/>
-					<FormInput
-						errors={errors}
-						handleBlur={handleBlur}
-						handleChange={handleChange}
-						name="city"
-						touched={touched}
-						type="text"
-						values={values}
-					/>
-					<FormInput
-						errors={errors}
-						handleBlur={handleBlur}
-						handleChange={handleChange}
-						name="company"
-						touched={touched}
-						type="text"
-						values={values}
-					/>
-					<FormInput
-						errors={errors}
-						handleBlur={handleBlur}
-						handleChange={handleChange}
-						name="country"
-						touched={touched}
-						type="text"
-						values={values}
-					/>
-					<button type="submit" disabled={isSubmitting || loading}>
-						Updat
-						{loading ? `ing` : `e`} Shipping Details
-					</button>
-				</form>
-			)}
-		</Formik>
+		<>
+			{error && <ErrorMessage message={error.message} />}
+			<Formik
+				initialValues={{
+					firstName: "",
+					lastName: "",
+					email: "",
+					address1: "",
+					address2: "",
+					city: "",
+					company: "",
+					country: ""
+				}}
+				validate={values => {
+					const errors = {};
+					if (!values.firstName) errors.firstName = "required";
+					if (!values.lastName) errors.lastName = "required";
+					if (!values.email) errors.email = "required";
+					if (!values.address1) errors.address1 = "required";
+					if (!values.address2) errors.address2 = "required";
+					if (!values.city) errors.city = "required";
+					if (!values.company) errors.company = "required";
+					if (!values.country) errors.country = "required";
+					return errors;
+				}}
+				validateOnBlur={false}
+				validateOnChange={false}
+				onSubmit={async (values, { setSubmitting }) => {
+					await processUpdate(values);
+					setSubmitting(false);
+				}}
+			>
+				{({
+					values,
+					errors,
+					touched,
+					handleChange,
+					handleBlur,
+					handleSubmit,
+					isSubmitting
+					/* and other goodies */
+				}) => (
+					<form
+						aria-busy={isSubmitting || loading}
+						disabled={isSubmitting || loading}
+						onSubmit={handleSubmit}
+					>
+						<FormInput
+							errors={errors}
+							handleBlur={handleBlur}
+							handleChange={handleChange}
+							name="firstName"
+							touched={touched}
+							type="text"
+							values={values}
+						/>
+						<FormInput
+							errors={errors}
+							handleBlur={handleBlur}
+							handleChange={handleChange}
+							name="lastName"
+							touched={touched}
+							type="text"
+							values={values}
+						/>
+						<FormInput
+							errors={errors}
+							handleBlur={handleBlur}
+							handleChange={handleChange}
+							name="email"
+							touched={touched}
+							type="email"
+							values={values}
+						/>
+						<FormInput
+							errors={errors}
+							handleBlur={handleBlur}
+							handleChange={handleChange}
+							name="address1"
+							touched={touched}
+							type="text"
+							values={values}
+						/>
+						<FormInput
+							errors={errors}
+							handleBlur={handleBlur}
+							handleChange={handleChange}
+							name="address2"
+							touched={touched}
+							type="text"
+							values={values}
+						/>
+						<FormInput
+							errors={errors}
+							handleBlur={handleBlur}
+							handleChange={handleChange}
+							name="city"
+							touched={touched}
+							type="text"
+							values={values}
+						/>
+						<FormInput
+							errors={errors}
+							handleBlur={handleBlur}
+							handleChange={handleChange}
+							name="company"
+							touched={touched}
+							type="text"
+							values={values}
+						/>
+						<FormInput
+							errors={errors}
+							handleBlur={handleBlur}
+							handleChange={handleChange}
+							name="country"
+							touched={touched}
+							type="text"
+							values={values}
+						/>
+						<button type="submit" disabled={isSubmitting || loading}>
+							Updat
+							{loading ? `ing` : `e`} Shipping Details
+						</button>
+					</form>
+				)}
+			</Formik>
+		</>
 	);
 };
 
