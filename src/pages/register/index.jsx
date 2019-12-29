@@ -22,11 +22,7 @@ export default props => {
 	// Debugging changes 🕵🏻‍♂️
 	{
 		console.log({ data });
-	}
-	{
 		console.log({ error });
-	}
-	{
 		console.log({ loading });
 	}
 
@@ -35,12 +31,18 @@ export default props => {
 		data &&
 		data.registerCustomer &&
 		data.registerCustomer.customer &&
-		data.registerCustomer.customer.jwtAuthToken
+		data.registerCustomer.customer.jwtAuthToken &&
+		data.registerCustomer.customer.jwtRefreshToken
 	) {
 		localStorage.setItem(
 			"authToken",
 			data.registerCustomer.customer.jwtAuthToken
 		);
+		localStorage.setItem(
+			"refreshToken",
+			data.registerCustomer.customer.jwtRefreshToken
+		);
+
 		navigate("/account/");
 	}
 
