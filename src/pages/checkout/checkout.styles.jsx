@@ -15,6 +15,14 @@ export const StyledCheckout = styled.section`
 		border-left: 1px solid ${props => props.theme.grey200};
 	}
 
+	.checkout__summary__actions {
+		margin-top: 32px;
+	}
+
+	.checkout__summary__header {
+		margin-bottom: 32px;
+	}
+
 	.checkout__wrapper {
 		display: flex;
 	}

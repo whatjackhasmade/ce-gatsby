@@ -27,22 +27,31 @@ const CheckoutPage = props => {
 	const { data, error, loading } = useQuery(CURRENT_CART_QUERY);
 	const { gatsbyContext, items } = props;
 
+	const cartHasContents =
+		data &&
+		data.cart &&
+		data.cart.contents &&
+		data.cart.contents.nodes &&
+		data.cart.contents.nodes.length > 0;
+
 	return (
 		<StyledCheckout>
 			<div className="checkout__wrapper">
 				<div className="checkout__content">
-					<Link href="/">Return to store</Link>
+					<Link href="/shop">Return to store</Link>
 					<h1 className="h3">Checkout</h1>
-					<Button
-						className="checkout__summary__checkout"
-						disabled={error || loading}
-						onClick={e => {
-							e.preventDefault();
-							alert("Time to pay");
-						}}
-					>
-						Continue to payment
-					</Button>
+					{cartHasContents && (
+						<Button
+							className="checkout__summary__checkout"
+							disabled={error || loading}
+							onClick={e => {
+								e.preventDefault();
+								alert("Time to pay");
+							}}
+						>
+							Continue to payment
+						</Button>
+					)}
 				</div>
 				<aside className="checkout__summary">
 					<header className="checkout__summary__header">
@@ -73,32 +82,30 @@ const CheckoutPage = props => {
 					support for when the application context is unavailable but items are provided.
 				*/}
 					<div className="checkout__summary__products">
-						{data &&
-							data.cart &&
-							data.cart.contents &&
-							data.cart.contents.nodes &&
-							data.cart.contents.nodes.length &&
+						{cartHasContents &&
 							data.cart.contents.nodes.map(product => (
 								<CartItem {...product} />
 							))}
 						{!data &&
 							items &&
-							items.length &&
+							items.length > 0 &&
 							items.map(product => <CartItem {...product} />)}
 					</div>
 					<div className="checkout__summary__actions">
 						{/* If no items are available, disable the checkout option */}
-						<Button
-							className="checkout__summary__checkout"
-							disabled={error || loading}
-							onClick={e => {
-								e.preventDefault();
-								alert("Time to pay");
-							}}
-							variant="tertiary"
-						>
-							Continue to payment
-						</Button>
+						{cartHasContents && (
+							<Button
+								className="checkout__summary__checkout"
+								disabled={error || loading}
+								onClick={e => {
+									e.preventDefault();
+									alert("Time to pay");
+								}}
+								variant="tertiary"
+							>
+								Continue to payment
+							</Button>
+						)}
 					</div>
 				</aside>
 			</div>
