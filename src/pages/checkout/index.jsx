@@ -27,22 +27,6 @@ const CheckoutPage = props => {
 	const { data, error, loading } = useQuery(CURRENT_CART_QUERY);
 	const { gatsbyContext, items } = props;
 
-	if (!data || !data.cart || !data.cart.length) {
-		return (
-			<StyledCheckout>
-				<div className="checkout__wrapper">
-					<div className="checkout__content">
-						<Link href="/">Return to store</Link>
-						<h1 className="h3">Checkout</h1>
-						<p>We couldn't find any items in your cart</p>
-						<p>Try out these products!</p>
-						{gatsbyContext && <Archive items={gatsbyContext.allProducts} />}
-					</div>
-				</div>
-			</StyledCheckout>
-		);
-	}
-
 	return (
 		<StyledCheckout>
 			<div className="checkout__wrapper">
@@ -74,6 +58,14 @@ const CheckoutPage = props => {
 					{loading && <p>Loading...</p>}
 					{error && (
 						<ErrorMessage isDeveloperConcern={true} message={error.message} />
+					)}
+
+					{!error && !loading && (!data || !data.cart || !data.cart.contents) && (
+						<>
+							<p>We couldn't find any items in your cart</p>
+							<p>Try out these products!</p>
+							{gatsbyContext && <Archive items={gatsbyContext.allProducts} />}
+						</>
 					)}
 					{/*
 					We could remove the support for `items` as a itterable key but to keep
