@@ -14,6 +14,12 @@ export const useAllProducts = () => {
 								image {
 									mediaItemUrl
 								}
+								productCategories {
+									nodes {
+										title: name
+										slug
+									}
+								}
 								purchasable
 								title: name
 								shortDescription
