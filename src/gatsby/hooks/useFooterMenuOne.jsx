@@ -1,11 +1,11 @@
 import { useStaticQuery, graphql } from "gatsby";
 
-export const useHeaderMenu = () => {
+export const useFooterMenuOne = () => {
 	const { wordpress } = useStaticQuery(
 		graphql`
-			query GET_MENU_HEADER {
+			query GET_MENU_FOOTER_ONE {
 				wordpress {
-					menus(where: { location: HEADER }) {
+					menus(where: { location: FOOTER_ONE }) {
 						edges {
 							node {
 								id
@@ -25,7 +25,7 @@ export const useHeaderMenu = () => {
 			}
 		`
 	);
-	return wordpress.menus.edges[0].node.menuItems.edges;
+	return wordpress.menus.edges[0].node;
 };
 
-export default useHeaderMenu;
+export default useFooterMenuOne;

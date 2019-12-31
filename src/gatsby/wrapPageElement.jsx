@@ -1,7 +1,9 @@
 import React from "react";
 
-import useAllMenus from "./hooks/useAllMenus";
 import useAllProducts from "./hooks/useAllProducts";
+import useFooterMenuOne from "./hooks/useFooterMenuOne";
+import useFooterMenuTwo from "./hooks/useFooterMenuTwo";
+import useFooterMenuThree from "./hooks/useFooterMenuThree";
 import useHeaderMenu from "./hooks/useHeaderMenu";
 
 export const wrapPageElement = ({ element, props }) => {
@@ -9,14 +11,16 @@ export const wrapPageElement = ({ element, props }) => {
 };
 
 const ProcessedProps = props => {
-	let allMenus = useAllMenus();
 	let allProducts = useAllProducts();
 	let menuHeader = useHeaderMenu();
 
-	allMenus = allMenus.map(menu => menu.node);
 	allProducts = allProducts.map(prod => prod.node);
 
-	let footerMenus = allMenus.filter(menu => menu.slug !== "header-menu");
+	const footerMenuOne = useFooterMenuOne();
+	const footerMenuTwo = useFooterMenuTwo();
+	const footerMenuThree = useFooterMenuThree();
+
+	let footerMenus = [footerMenuOne, footerMenuTwo, footerMenuThree];
 	footerMenus = footerMenus.map(menu => {
 		return {
 			items: menu.menuItems.edges.map(item => item.node),
