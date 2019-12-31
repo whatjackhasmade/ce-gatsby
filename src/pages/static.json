@@ -1,4 +1,35 @@
 {
+	"panels": {
+		"items": [
+			{
+				"content": "Hand made in Wales using the best natural products sourced from the hillside and coast of Wales.",
+				"link": {
+					"href": "#",
+					"label": "Learn About Our Process",
+					"target": null
+				},
+				"title": "Truly Handcrafted"
+			},
+			{
+				"content": "Multi Award Winning Spa Manager Clare Pritchard shares the story of Celtic Elements.",
+				"link": {
+					"href": "#",
+					"label": "Read Our Story",
+					"target": null
+				},
+				"title": "Our Story"
+			},
+			{
+				"content": "Celtic Elements is nearly zero waste. We want to help all our clients become the same.",
+				"link": {
+					"href": "#",
+					"label": "Join the movement",
+					"target": null
+				},
+				"title": "Earth First"
+			}
+		]
+	},
 	"slider": {
 		"items": [
 			{
