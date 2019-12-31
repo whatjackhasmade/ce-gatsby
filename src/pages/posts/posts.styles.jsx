@@ -1,13 +1,9 @@
 import styled from "styled-components";
 
-export const StyledInsights = styled.section`
+export const StyledPosts = styled.section`
 	padding: 32px 0;
 
-	.checkout__content {
-		min-height: 500px;
-	}
-
-	.checkout__summary {
+	.insights__summary {
 		margin-left: auto;
 		padding-left: 48px;
 		padding-right: 48px;
@@ -15,9 +11,9 @@ export const StyledInsights = styled.section`
 		border-left: 1px solid ${props => props.theme.grey200};
 	}
 
-	.checkout__wrapper {
+	.insights__wrapper {
 		display: flex;
 	}
 `;
 
-export default StyledInsights;
+export default StyledPosts;
