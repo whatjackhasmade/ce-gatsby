@@ -118,19 +118,19 @@
 				"title": "Release the day"
 			},
 			{
-				"image": "https://source.unsplash.com/HOs5ZoXuG18/1920x1080",
+				"image": "https://source.unsplash.com/XU1-sAMZFqc/1920x1080",
 				"light": false,
-				"title": "Beauty Sleep in a Box"
+				"title": "Our story"
 			},
 			{
-				"image": "https://source.unsplash.com/HOs5ZoXuG18/1920x1080",
-				"light": false,
-				"title": "Beauty Sleep in a Box"
+				"image": "https://source.unsplash.com/fQucGYNXAG8/1920x1080",
+				"light": true,
+				"title": "Secrets to a perfect sleep"
 			},
 			{
-				"image": "https://source.unsplash.com/HOs5ZoXuG18/1920x1080",
-				"light": false,
-				"title": "Beauty Sleep in a Box"
+				"image": "https://source.unsplash.com/UaO58q6ioxI/1920x1080",
+				"light": true,
+				"title": "Essential oils"
 			}
 		]
 	}
