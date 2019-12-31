@@ -12,6 +12,7 @@ import Link from "../../storybook/src/components/atoms/link/link";
 
 import CartItem from "../../storybook/src/components/molecules/cart-item/cartItem";
 import ErrorMessage from "../../storybook/src/components/molecules/error-message/errorMessage";
+import Payment from "../../storybook/src/components/molecules/payment/payment";
 
 import Archive from "../../storybook/src/components/organisms/archive/archive";
 
@@ -41,16 +42,12 @@ const CheckoutPage = props => {
 					<Link href="/shop">Return to store</Link>
 					<h1 className="h3">Checkout</h1>
 					{cartHasContents && (
-						<Button
+						<Payment
 							className="checkout__summary__checkout"
-							disabled={error || loading}
-							onClick={e => {
-								e.preventDefault();
-								alert("Time to pay");
-							}}
+							total={data.cart.total}
 						>
 							Continue to payment
-						</Button>
+						</Payment>
 					)}
 				</div>
 				<aside className="checkout__summary">
