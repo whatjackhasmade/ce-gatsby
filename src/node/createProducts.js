@@ -18,6 +18,7 @@ module.exports = async ({ actions, graphql }) => {
           description(format: RENDERED)
           featured
           image {
+            altText
             mediaItemUrl
           }
           link
@@ -25,6 +26,20 @@ module.exports = async ({ actions, graphql }) => {
           modified
           name
           onSale
+          productCategories {
+            nodes {
+              count
+              description
+              id
+              image {
+                altText
+                mediaItemUrl
+              }
+              title: name
+              productCategoryId
+              slug
+            }
+          }
           purchasable
           purchaseNote
           reviewCount
