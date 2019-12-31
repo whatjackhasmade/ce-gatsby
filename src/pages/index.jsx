@@ -17,7 +17,7 @@ const Homepage = props => {
 	const carouselProducts = products.map(p => p.node);
 
 	return (
-		<Layout {...props}>
+		<Layout {...props} headerVariant="fixedLight">
 			<Slider {...slider} />
 			<Banner {...banner} />
 			<Carousel {...carousel} items={carouselProducts} type="product" />
