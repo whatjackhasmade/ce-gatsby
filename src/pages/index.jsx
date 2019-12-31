@@ -9,9 +9,10 @@ import Layout from "../storybook/src/components/particles/layout";
 import Banner from "../storybook/src/components/organisms/banner/banner";
 import Carousel from "../storybook/src/components/organisms/carousel/carousel";
 import Panels from "../storybook/src/components/organisms/panels/panels";
+import Row from "../storybook/src/components/organisms/row/row";
 import Slider from "../storybook/src/components/organisms/slider/slider";
 
-const { banner, carousel, panels, slider } = staticData;
+const { banner, carousel, panels, row, slider } = staticData;
 
 const Homepage = props => {
 	const products = useAllProducts();
@@ -23,6 +24,7 @@ const Homepage = props => {
 			<Panels {...panels} />
 			<Banner {...banner} />
 			<Carousel {...carousel} items={carouselProducts} type="product" />
+			<Row {...row} />
 		</Layout>
 	);
 };
