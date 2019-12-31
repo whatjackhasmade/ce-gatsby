@@ -104,7 +104,10 @@
 					"url": "/shop"
 				},
 				"description": "<p>Celtic Elements is a Welsh, Vegan, Wellness brand. We use Welsh natural ingredients from the hillsides & coast of Wales in our Skincare, Body care and Well being ranges.</p><p>We believe in using locally sourced products whist reducing our waste as much as possible and help our customers to do the same.</p>",
-				"image": "https://source.unsplash.com/0MoF-Fe0w0A/1920x1080",
+				"image": {
+					"altText": "",
+					"mediaItemUrl": "https://source.unsplash.com/0MoF-Fe0w0A/1920x1080"
+				},
 				"light": true,
 				"title": "Celtic elements"
 			},
@@ -113,22 +116,34 @@
 					"label": "View product",
 					"url": "/release-the-day"
 				},
-				"image": "https://source.unsplash.com/r40EYKVyutI/1920x1080",
+				"image": {
+					"altText": "",
+					"mediaItemUrl": "https://source.unsplash.com/r40EYKVyutI/1920x1080"
+				},
 				"light": true,
 				"title": "Release the day"
 			},
 			{
-				"image": "https://source.unsplash.com/XU1-sAMZFqc/1920x1080",
+				"image": {
+					"altText": "",
+					"mediaItemUrl": "https://source.unsplash.com/XU1-sAMZFqc/1920x1080"
+				},
 				"light": false,
 				"title": "Our story"
 			},
 			{
-				"image": "https://source.unsplash.com/fQucGYNXAG8/1920x1080",
+				"image": {
+					"altText": "",
+					"mediaItemUrl": "https://source.unsplash.com/fQucGYNXAG8/1920x1080"
+				},
 				"light": true,
 				"title": "Secrets to a perfect sleep"
 			},
 			{
-				"image": "https://source.unsplash.com/UaO58q6ioxI/1920x1080",
+				"image": {
+					"altText": "",
+					"mediaItemUrl": "https://source.unsplash.com/UaO58q6ioxI/1920x1080"
+				},
 				"light": true,
 				"title": "Essential oils"
 			}

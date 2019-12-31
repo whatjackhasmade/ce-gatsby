@@ -4,7 +4,6 @@ import StyledShop from "./shop.styles";
 
 import Layout from "../../storybook/src/components/particles/layout";
 
-import Link from "../../storybook/src/components/atoms/link/link";
 import HR from "../../storybook/src/components/atoms/hr/hr";
 
 import Archive from "../../storybook/src/components/organisms/archive/archive";
