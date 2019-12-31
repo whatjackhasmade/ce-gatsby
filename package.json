@@ -1,58 +1,57 @@
 {
-  "name": "ce-gatsby",
-  "private": false,
-  "description": "A Gatsby Store that uses Apollo, WordPress and WooCommerce",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "gatsby build",
-    "d": "gatsby develop -o",
-    "dev": "gatsby develop -o",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "postinstall": "git submodule update --init --recursive || true"
-  },
-  "dependencies": {
-    "@apollo/react-hooks": "^3.1.3",
-    "apollo-boost": "^0.4.7",
-    "apollo-client": "^2.6.8",
-    "dotenv": "^8.2.0",
-    "formik": "^2.0.8",
-    "gatsby": "^2.18.17",
-    "gatsby-image": "^2.2.37",
-    "gatsby-link": "^2.2.27",
-    "gatsby-plugin-react-svg": "^2.1.2",
-    "gatsby-plugin-sharp": "^2.3.10",
-    "gatsby-source-filesystem": "^2.1.43",
-    "gatsby-source-graphql": "^2.1.29",
-    "gatsby-transformer-sharp": "^2.3.9",
-    "graphql": "^14.5.8",
-    "graphql-tag": "^2.10.1",
-    "he": "^1.2.0",
-    "html-react-parser": "^0.10.0",
-    "normalize.css": "^8.0.1",
-    "react": "^16.12.0",
-    "react-apollo": "^3.1.3",
-    "react-apollo-hooks": "^0.5.0",
-    "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1",
-    "react-intersection-observer": "^8.25.2",
-    "react-slick": "^0.25.2",
-    "react-toastify": "^5.4.1",
-    "slick-carousel": "^1.8.1",
-    "styled-components": "^4.4.1",
-    "unfetch": "^4.1.0"
-  },
-  "devDependencies": {
-    "prettier": "^1.19.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/whatjackhasmade/ce-gatsby"
-  },
-  "bugs": {
-    "url": "https://github.com/whatjackhasmade/ce-gatsby/issues"
-  }
+	"name": "ce-gatsby",
+	"private": false,
+	"description": "A Gatsby Store that uses Apollo, WordPress and WooCommerce",
+	"version": "1.0.0",
+	"scripts": {
+		"build": "gatsby build",
+		"ci:manual": "start-server-and-test dev http://localhost:8000 cypress:open",
+		"ci:test": "start-server-and-test dev http://localhost:8000 cypress:run",
+		"clean": "gatsby clean",
+		"cypress:open": "cypress open",
+		"cypress:run": "cypress run",
+		"d": "gatsby develop -o",
+		"dev": "gatsby develop",
+		"develop": "gatsby develop -o",
+		"format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+		"postinstall": "git submodule update --init --recursive || true && cd src/storybook || true && npm i || true && rsync -av node_modules/* /../../node_modules/ || true && rm -rf node_modules || true",
+		"serve": "gatsby serve",
+		"start": "npm run develop",
+		"test": "npm run ci:manual",
+		"upgrade-interactive": "npm-check --update"
+	},
+	"dependencies": {
+		"@apollo/react-hooks": "^3.1.3",
+		"@testing-library/cypress": "^5.0.2",
+		"cypress": "^3.8.0",
+		"dotenv": "^8.2.0",
+		"formik": "^2.0.8",
+		"gatsby": "^2.18.17",
+		"gatsby-image": "^2.2.37",
+		"gatsby-link": "^2.2.27",
+		"gatsby-plugin-react-svg": "^2.1.2",
+		"gatsby-plugin-sharp": "^2.3.10",
+		"gatsby-source-filesystem": "^2.1.43",
+		"gatsby-source-graphql": "^2.1.29",
+		"gatsby-transformer-sharp": "^2.3.9",
+		"graphql": "^14.5.8",
+		"graphql-tag": "^2.10.1",
+		"he": "^1.2.0",
+		"npm-check": "^5.9.0",
+		"react": "^16.12.0",
+		"react-apollo": "^3.1.3",
+		"react-dom": "^16.12.0",
+		"react-helmet": "^5.2.1",
+		"start-server-and-test": "^1.10.6"
+	},
+	"devDependencies": {
+		"prettier": "^1.19.1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/whatjackhasmade/ce-gatsby"
+	},
+	"bugs": {
+		"url": "https://github.com/whatjackhasmade/ce-gatsby/issues"
+	}
 }

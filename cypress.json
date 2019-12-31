@@ -1,0 +1,12 @@
+{
+	"baseUrl": "http://localhost:8000/",
+	"env": {
+		"GATSBY_DOMAIN": "https://celticwordpress.co.uk",
+		"GATSBY_GRAPHQL_API": "https://celticwordpress.co.uk/graphql",
+		"GATSBY_EXPRESS_DOMAIN": "https://ce-express.herokuapp.com",
+		"GRAPHQL_API": "https://celticwordpress.co.uk/graphql"
+	},
+	"port": 9991,
+	"integrationFolder": "cypress/integrations",
+	"testFiles": "**/*.test.*"
+}
