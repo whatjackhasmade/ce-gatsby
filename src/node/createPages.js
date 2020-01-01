@@ -1,4 +1,5 @@
 const path = require(`path`);
+const blocks = require(`./fragments/blocks/allBlocks`);
 
 module.exports = async ({ actions, graphql }) => {
 	const GET_PAGES = `
@@ -6,6 +7,14 @@ module.exports = async ({ actions, graphql }) => {
     wordpress {
       pages( first: $first ) {
 				nodes {
+					blocks {
+						name
+						${blocks.acfBanner}
+						${blocks.acfCarousel}
+						${blocks.acfPanels}
+						${blocks.acfRow}
+						${blocks.acfSlider}
+					}
           content
           isFrontPage
 					title
@@ -27,7 +36,6 @@ module.exports = async ({ actions, graphql }) => {
 			console.log(`Creating page: ${page.uri}`);
 
 			const { isFrontPage } = page;
-			if (isFrontPage) return null;
 			const uri = isFrontPage ? `/` : `/${page.uri}`;
 
 			actions.createPage({
