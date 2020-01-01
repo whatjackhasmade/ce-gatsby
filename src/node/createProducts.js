@@ -1,5 +1,6 @@
 const path = require(`path`);
 const mediaFields = require(`./fragments/media`);
+const productFields = require(`./fragments/product`);
 const seoFields = require(`./fragments/seo`);
 
 module.exports = async ({ actions, graphql }) => {
@@ -8,49 +9,11 @@ module.exports = async ({ actions, graphql }) => {
 	  wordpress {
 	    products( first: $first ) {
 	      nodes {
-          id
-          productId
-          averageRating
-          catalogVisibility
-          date
-          dateOnSaleFrom
-          dateOnSaleTo
-          description(format: RENDERED)
-          featured
-          image {
-            ${mediaFields}
-          }
-          link
-          menuOrder
-          modified
-          name
-          onSale
-          productCategories {
+          ${productFields}
+          related {
             nodes {
-              count
-              description
-              id
-              image {
-                ${mediaFields}
-              }
-              title: name
-              productCategoryId
-					    ${seoFields}
-              slug
+              ${productFields}
             }
-          }
-          purchasable
-          purchaseNote
-          reviewCount
-          reviewsAllowed
-          shortDescription(format: RENDERED)
-          sku
-          slug
-          status
-          totalSales
-          type
-          ... on WORDPRESS_SimpleProduct {
-            price
           }
 	      }
 	    }
