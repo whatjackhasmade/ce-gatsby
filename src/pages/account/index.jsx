@@ -44,12 +44,10 @@ export default props => {
 const CustomerDetails = () => {
 	const { loading, error, data } = useQuery(CUSTOMER_DETAILS_QUERY);
 
-	if (loading) return null;
+	if (loading) return <p>Loading...</p>;
 	if (error) return <ErrorMessage message={error.message} />;
 
 	const { customer } = data;
-
-	console.log(customer);
 
 	return (
 		<>
@@ -86,11 +84,9 @@ const CustomerDetails = () => {
 };
 
 const UpdateShippingForm = ({ initial }) => {
-	const [updateShipping, { data, error, loading }] = useMutation(
+	const [updateShipping, { error, loading }] = useMutation(
 		UPDATE_SHIPPING_MUTATION
 	);
-
-	console.log(data);
 
 	const processUpdate = async values => {
 		const variables = {
@@ -102,7 +98,7 @@ const UpdateShippingForm = ({ initial }) => {
 			variables
 		});
 
-		console.log(res);
+		if (res) return;
 	};
 
 	return (

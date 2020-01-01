@@ -28,34 +28,26 @@ export default props => {
 	if (!ourAuthToken) localStorage.removeItem("refreshToken");
 	if (!ourRefreshToken) localStorage.removeItem("authToken");
 
-	// Debugging changes 🕵🏻‍♂️
-	console.log({ data });
-	console.log({ error });
-	console.log({ loading });
-
 	const processLogin = async values => {
-		const login = await loginUser({
+		const res = await loginUser({
 			variables: {
 				clientMutationId: generateID("login"),
 				...values
 			}
 		});
 
-		if (
-			!login ||
-			!login.data ||
-			!login.data.login ||
-			!login.data.login.authToken ||
-			!login.data.login.refreshToken
-		) {
+		const { data } = res;
+		const { login } = data;
+
+		if (!login || !login.authToken || !login.refreshToken) {
 			console.error(
 				"Unable to retrieve authToken or refreshToken from login mutation"
 			);
 			return false;
 		}
 
-		localStorage.setItem("authToken", login.data.login.authToken);
-		localStorage.setItem("refreshToken", login.data.login.refreshToken);
+		localStorage.setItem("authToken", login.authToken);
+		localStorage.setItem("refreshToken", login.refreshToken);
 		navigate("/account/");
 	};
 

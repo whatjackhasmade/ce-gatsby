@@ -19,11 +19,6 @@ export default props => {
 		CREATE_CUSTOMER_ACCOUNT
 	);
 
-	// Debugging changes 🕵🏻‍♂️
-	console.log({ data });
-	console.log({ error });
-	console.log({ loading });
-
 	// TODO: Replace with optional chaining - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
 	if (
 		data &&
