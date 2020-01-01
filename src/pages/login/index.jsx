@@ -19,9 +19,7 @@ export default props => {
 	const ourAuthToken = localStorage.getItem("authToken");
 	const ourRefreshToken = localStorage.getItem("refreshToken");
 
-	const [loginUser, { data, error, loading }] = useMutation(
-		LOGIN_USER_MUTATION
-	);
+	const [loginUser, { error, loading }] = useMutation(LOGIN_USER_MUTATION);
 
 	if (ourAuthToken && ourRefreshToken) navigate("/account/");
 
