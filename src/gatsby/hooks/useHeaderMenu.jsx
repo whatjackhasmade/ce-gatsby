@@ -25,6 +25,7 @@ export const useHeaderMenu = () => {
 			}
 		`
 	);
+	if (!wordpress || !wordpress.menus || !wordpress.menus.edges) return [];
 	return wordpress.menus.edges[0].node.menuItems.edges;
 };
 
