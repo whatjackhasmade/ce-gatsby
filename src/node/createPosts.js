@@ -1,4 +1,6 @@
 const path = require(`path`);
+const mediaFields = require(`./fragments/media`);
+const seoFields = require(`./fragments/seo`);
 
 module.exports = async ({ actions, graphql }) => {
 	const GET_POSTS = `
@@ -18,10 +20,10 @@ module.exports = async ({ actions, graphql }) => {
           date
           dateGmt
           featuredImage {
-            altText
-            mediaItemUrl
+            ${mediaFields}
           }
           id
+					${seoFields}
           slug
           status
           title

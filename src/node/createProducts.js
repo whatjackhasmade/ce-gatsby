@@ -1,6 +1,6 @@
 const path = require(`path`);
-
-const fluidImage = require(`./fragments/gatsby/fluid`);
+const mediaFields = require(`./fragments/media`);
+const seoFields = require(`./fragments/seo`);
 
 module.exports = async ({ actions, graphql }) => {
 	const GET_PRODUCTS = `
@@ -18,8 +18,7 @@ module.exports = async ({ actions, graphql }) => {
           description(format: RENDERED)
           featured
           image {
-            altText
-            mediaItemUrl
+            ${mediaFields}
           }
           link
           menuOrder
@@ -32,11 +31,11 @@ module.exports = async ({ actions, graphql }) => {
               description
               id
               image {
-                altText
-                mediaItemUrl
+                ${mediaFields}
               }
               title: name
               productCategoryId
+					    ${seoFields}
               slug
             }
           }
@@ -44,6 +43,7 @@ module.exports = async ({ actions, graphql }) => {
           purchaseNote
           reviewCount
           reviewsAllowed
+          ${seoFields}
           shortDescription(format: RENDERED)
           sku
           slug

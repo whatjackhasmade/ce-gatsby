@@ -1,3 +1,5 @@
+const mediaFields = require(`./media`);
+
 const seoFields = `
 	seo {
 		title
@@ -5,10 +7,14 @@ const seoFields = `
 		metaDesc
 		metaKeywords
 		opengraphDescription
-		opengraphImage
+		opengraphImage {
+			${mediaFields}
+		}
 		opengraphTitle
 		twitterDescription
-		twitterImage
+		twitterImage {
+			${mediaFields}
+		}
 		twitterTitle
 	}
 `;

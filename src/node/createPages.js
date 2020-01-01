@@ -1,5 +1,7 @@
 const path = require(`path`);
 const blocks = require(`./fragments/blocks/allBlocks`);
+const mediaFields = require(`./fragments/media`);
+const seoFields = require(`./fragments/seo`);
 
 module.exports = async ({ actions, graphql }) => {
 	const GET_PAGES = `
@@ -15,8 +17,12 @@ module.exports = async ({ actions, graphql }) => {
 						${blocks.acfRow}
 						${blocks.acfSlider}
 					}
-          content
-          isFrontPage
+					content
+					featuredImage {
+            ${mediaFields}
+          }
+					isFrontPage
+					${seoFields}
 					title
 					uri
 				}
