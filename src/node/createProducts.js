@@ -43,7 +43,6 @@ module.exports = async ({ actions, graphql }) => {
           purchaseNote
           reviewCount
           reviewsAllowed
-          ${seoFields}
           shortDescription(format: RENDERED)
           sku
           slug
