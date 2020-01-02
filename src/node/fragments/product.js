@@ -15,16 +15,27 @@ const productFields = `
 	id
 	productId
 	productFields: ACFProductFields {
-		sliceOne {
+		enabledComponents
+		cta: banner {
+			content
+			cta {
+				target
+				title
+				url
+			}
+			title
+			useGlobalCta
+		}
+		slice_one: sliceOne {
 			${sliceFields}
 		}
-		sliceTwo {
+		slice_two: sliceTwo {
 			${sliceFields}
 		}
-		sliceThree {
+		slice_three: sliceThree {
 			${sliceFields}
 		}
-		sliceFour {
+		slice_four: sliceFour {
 			${sliceFields}
 		}
 	}

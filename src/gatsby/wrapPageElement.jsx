@@ -5,12 +5,14 @@ import useFooterMenuOne from "./hooks/useFooterMenuOne";
 import useFooterMenuTwo from "./hooks/useFooterMenuTwo";
 import useFooterMenuThree from "./hooks/useFooterMenuThree";
 import useHeaderMenu from "./hooks/useHeaderMenu";
+import useGlobalFields from "./hooks/useGlobalFields";
 
 export const wrapPageElement = ({ element, props }) => {
 	return <ProcessedProps {...props}>{element}</ProcessedProps>;
 };
 
 const ProcessedProps = props => {
+	const globalFields = useGlobalFields();
 	let allProducts = useAllProducts();
 	let menuHeader = useHeaderMenu();
 
@@ -65,7 +67,7 @@ const ProcessedProps = props => {
 
 	const newProps = {
 		...props,
-		gatsbyContext: { allProducts, headerMenu, footerMenus }
+		gatsbyContext: { allProducts, footerMenus, globalFields, headerMenu }
 	};
 
 	return (

@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
+import { generateID } from "../../storybook/src/components/helpers";
 
 import StyledCheckout from "./checkout.styles";
 
@@ -35,6 +36,10 @@ const CheckoutPage = props => {
 		data.cart.contents.nodes &&
 		data.cart.contents.nodes.length > 0;
 
+	const totalInt = cartHasContents
+		? Number(data.cart.total.replace(/[^0-9]+/g, ""))
+		: 0;
+
 	return (
 		<StyledCheckout>
 			<div className="checkout__wrapper">
@@ -42,10 +47,7 @@ const CheckoutPage = props => {
 					<Link href="/shop">Return to store</Link>
 					<h1 className="h3">Checkout</h1>
 					{cartHasContents && (
-						<Payment
-							className="checkout__summary__checkout"
-							total={data.cart.total}
-						>
+						<Payment className="checkout__summary__checkout" total={totalInt}>
 							Continue to payment
 						</Payment>
 					)}
@@ -56,8 +58,7 @@ const CheckoutPage = props => {
 						{data && data.cart && data.cart.total && (
 							<span className="checkout__summary__total">
 								{data.cart.total}
-								{Number(data.cart.total.replace(/[^0-9]+/g, "")) > 100 &&
-									` + Free P&P`}
+								{totalInt > 100 && ` + Free P&P`}
 							</span>
 						)}
 					</header>
@@ -81,12 +82,14 @@ const CheckoutPage = props => {
 					<div className="checkout__summary__products">
 						{cartHasContents &&
 							data.cart.contents.nodes.map(product => (
-								<CartItem {...product} />
+								<CartItem key={generateID("cart-item")} {...product} />
 							))}
 						{!data &&
 							items &&
 							items.length > 0 &&
-							items.map(product => <CartItem {...product} />)}
+							items.map(product => (
+								<CartItem key={generateID("cart-item")} {...product} />
+							))}
 					</div>
 					<div className="checkout__summary__actions">
 						{/* If no items are available, disable the checkout option */}
