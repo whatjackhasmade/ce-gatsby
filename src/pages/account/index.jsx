@@ -52,7 +52,9 @@ const CustomerDetails = () => {
 	return (
 		<>
 			<div className="account__ids">
-				<h2 className="account__username h3">{customer.username}</h2>
+				<h2 className="account__username h3">
+					Welcome back, {customer.username}
+				</h2>
 				<h3 className="account__email">{customer.email}</h3>
 			</div>
 			<div className="account__shipping">

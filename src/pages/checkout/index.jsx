@@ -8,7 +8,6 @@ import Layout from "../../storybook/src/components/particles/layout";
 
 import CURRENT_CART_QUERY from "../../storybook/src/components/particles/queries/cart/CURRENT_CART_QUERY";
 
-import Button from "../../storybook/src/components/atoms/button/button";
 import Link from "../../storybook/src/components/atoms/link/link";
 
 import CartItem from "../../storybook/src/components/molecules/cart-item/cartItem";
@@ -94,17 +93,13 @@ const CheckoutPage = props => {
 					<div className="checkout__summary__actions">
 						{/* If no items are available, disable the checkout option */}
 						{cartHasContents && (
-							<Button
+							<Payment
 								className="checkout__summary__checkout"
-								disabled={error || loading}
-								onClick={e => {
-									e.preventDefault();
-									alert("Time to pay");
-								}}
-								variant="tertiary"
+								disabled={loading}
+								total={totalInt}
 							>
 								Continue to payment
-							</Button>
+							</Payment>
 						)}
 					</div>
 				</aside>
